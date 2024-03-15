@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>{{ mentor.name }}</h2>
+    <h3>Submitted Evaluations</h3>
+    {% if submitted_evaluations %}
+        <ul>
+            {% for evaluation in submitted_evaluations %}
+                <li>
+                    <strong>{{ evaluation.student.name }}</strong>
+                    <p>Ideation Marks: {{ evaluation.ideation_marks }}</p>
+                    <p>Execution Marks: {{ evaluation.execution_marks }}</p>
+                    <p>Viva Marks: {{ evaluation.viva_marks }}</p>
+                    <p>Total Marks: {{ evaluation.total_marks }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No submitted evaluations.</p>
+    {% endif %}
+
+    <h3>Pending Evaluations</h3>
+    {% if pending_evaluations %}
+        <ul>
+            {% for evaluation in pending_evaluations %}
+                <li>
+                    <strong>{{ evaluation.student.name }}</strong>
+                    <a href="{% url 'assign_marks' mentor_id=mentor.id evaluation_id=evaluation.id %}">Assign Marks</a>
+                    <a href="{% url 'remove_student' mentor_id=mentor.id evaluation_id=evaluation.id %}">Remove Student</a>
+                    <a href="{% url 'submit_marks' mentor_id=mentor.id evaluation_id=evaluation.id %}">Submit</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No pending evaluations.</p>
+    {% endif %}
+
+    <a href="{% url 'add_student' mentor_id=mentor.id %}" class="btn">Add Student</a>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Submit Marks for Student: {{ evaluation.student.name }}</h2>
+    <p>Ideation Marks: {{ evaluation.ideation_marks }}</p>
+    <p>Execution Marks: {{ evaluation.execution_marks }}</p>
+    <p>Viva Marks: {{ evaluation.viva_marks }}</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Submit Marks</button>
+    </form>
+{% endblock %}
