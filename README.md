@@ -17,6 +17,8 @@ A demonstation Video is given in the folder please do check it out
 3) Students can be added to the platform by the super user / teacher but can only be deleted by the super user (keeping in mind that any tacher can access the student)
 4) A very neat admin page with privilages and features !!
 
+I have setted up a SMTP server using using **postfix** (had a lot to do with the configuration hence not included in the docker as it was partially GUI based)
+
 NOTE: Teaches once clicked submit will not be able to edit the marks of the student and the student will be notified via mail (here the mail is simulated)
 
 ### Structure of the DATABASE 
@@ -147,8 +149,6 @@ you can login to the superuser mode by appending /admin to the base url
 ![image](images/filters.png)
 ![image](images/mail.png)
 ![image](images/adminpageandlogs.png)
-
-
 
 
 
