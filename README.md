@@ -78,6 +78,14 @@ The container name is 'EVALDASHBOARD' (small letters)
 
 after running these you can either add data manually the following commands and put the data automatically for further analysis
 
+
+RUN the following commands 
+
+```github
+python manage.py shell
+```
+Then
+
 ```python
 from evaldashboard.models import Mentor, Student
 from faker import Faker
@@ -100,6 +108,33 @@ for _ in range(20):
         phone=fake.phone_number()
     )
     obj.save()
+```
+
+then exit using 
+
+```python
+exit()
+```
+
+Now you can see the updated data !!
+
+**CREATING A SUPER USER TO BE GOD OF THE WEBSITE**
+
+```github
+sudo docker exec -it <container id> /bin/bash
+```
+
+Then 
+
+```github
+python manage.py createsuperuser
+```
+thats it !! 
+
+you can login to the superuser mode by appending /admin to the base url 
+
+```
+0.0.0.0/8000/admin
 ```
 
 
