@@ -13,6 +13,7 @@ A demonstation Video is given in the folder please do check it out
 2) Teachers can add, remove and evaluate students (when clicked submitted mail will be sent)
    1) Teachers can edit the marks any number of times and marks are set from 0-10 
    2) There 3 criterions that are present in the model to evaluate the student
+   3) Teacher can filter between the students who are assigned or not assigned grades
 3) Students can be added to the platform by the super user / teacher but can only be deleted by the super user (keeping in mind that any tacher can access the student)
 4) A very neat admin page with privilages and features !!
 
@@ -108,8 +109,10 @@ for _ in range(20):
 ![image](images/main.png)
 ![image](images/teacher.png)
 ![image](images/grading.png)
+![image](images/filters.png)
 ![image](images/mail.png)
 ![image](images/adminpageandlogs.png)
+
 
 
 
