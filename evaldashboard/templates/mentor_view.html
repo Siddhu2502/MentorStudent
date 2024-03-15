@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Mentor View</h1>
+  <h2>{{ mentor.name }}</h2>
+
+  <h3>Filters</h3>
+  <form method="get" action="{% url 'mentor_view' mentor.id %}">
+    <label for="filter">Filter by:</label>
+    <select id="filter" name="filter">
+      <option value="all" {% if filter == 'all' %}selected{% endif %}>All Students</option>
+      <option value="unassigned" {% if filter == 'unassigned' %}selected{% endif %}>Students with Unassigned Marks</option>
+      <option value="assigned" {% if filter == 'assigned' %}selected{% endif %}>Students with Assigned Marks</option>
+    </select>
+    <button type="submit">Apply Filter</button>
+  </form>
+
+  <h3>Students</h3>
+  {% if students %}
+    <ul>
+      {% for student in students %}
+        <li>
+          <strong>{{ student.name }}</strong>
+          {% if student.evaluation.ideation_marks and student.evaluation.execution_marks and student.evaluation.viva_marks %}
+            <p>Ideation Marks: {{ student.evaluation.ideation_marks }}</p>
+            <p>Execution Marks: {{ student.evaluation.execution_marks }}</p>
+            <p>Viva Marks: {{ student.evaluation.viva_marks }}</p>
+          {% else %}
+            <p>Marks not assigned yet</p>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No students found.</p>
+  {% endif %}
+{% endblock %}

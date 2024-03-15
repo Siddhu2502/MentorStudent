@@ -30,4 +30,5 @@ urlpatterns = [
     path('mentors/<int:mentor_id>/evaluations/<int:evaluation_id>/assign-marks/', views.assign_marks, name='assign_marks'),
     path('mentors/<int:mentor_id>/evaluations/<int:evaluation_id>/remove-student/', views.remove_student, name='remove_student'),
     path('mentors/<int:mentor_id>/submit-marks/<int:evaluation_id>/', views.submit_marks, name='submit_marks'),
+    path('mentors/<int:mentor_id>/view/', views.mentor_view, name='mentor_view'),
 ]

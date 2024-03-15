@@ -36,4 +36,5 @@
     {% endif %}
 
     <a href="{% url 'add_student_mentor' mentor_id=mentor.id %}" class="btn">Add Student</a>
+    <a href="{% url 'mentor_view' mentor_id=mentor.id %}" class="btn">View Students</a>
 {% endblock %}

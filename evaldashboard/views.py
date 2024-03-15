@@ -88,3 +88,22 @@ def view_evaluations(request, mentor_id):
         'pending_evaluations': pending_evaluations,
     }
     return render(request, 'view_evaluations.html', context)
+
+def mentor_view(request, mentor_id):
+    mentor = get_object_or_404(Mentor, id=mentor_id)
+    evaluations = mentor.evaluations.select_related('student')
+    filter_type = request.GET.get('filter', 'all')
+
+    if filter_type == 'unassigned':
+        students = [eval.student for eval in evaluations if not (eval.ideation_marks and eval.execution_marks and eval.viva_marks)]
+    elif filter_type == 'assigned':
+        students = [eval.student for eval in evaluations if eval.ideation_marks and eval.execution_marks and eval.viva_marks]
+    else:
+        students = [eval.student for eval in evaluations]
+
+    context = {
+        'mentor': mentor,
+        'students': students,
+        'filter': filter_type,
+    }
+    return render(request, 'mentor_view.html', context)
