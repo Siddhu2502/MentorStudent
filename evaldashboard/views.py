@@ -19,7 +19,19 @@ def add_mentor(request):
         form = MentorForm()
     return render(request, 'add_mentor.html', {'form': form})
 
-def add_student(request, mentor_id):
+def add_student(request):
+    if request.method == 'POST':
+        form = StudentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Student added successfully.')
+            return redirect('index')
+    else:
+        form = StudentForm()
+    return render(request, 'add_student.html', {'form': form})
+    
+
+def add_student_mentor(request, mentor_id):
     mentor = get_object_or_404(Mentor, id=mentor_id)
     if request.method == 'POST':
         form = EvaluationForm(request.POST, instance=Evaluation(mentor=mentor))
@@ -30,7 +42,7 @@ def add_student(request, mentor_id):
             return redirect('view_evaluations', mentor_id=mentor.id)
     else:
         form = EvaluationForm(instance=Evaluation(mentor=mentor))
-    return render(request, 'add_student.html', {'form': form, 'mentor': mentor})
+    return render(request, 'add_student_mentor.html', {'form': form, 'mentor': mentor})
 
 def assign_marks(request, mentor_id, evaluation_id):
     mentor = get_object_or_404(Mentor, id=mentor_id)
